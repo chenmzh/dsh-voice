@@ -1,0 +1,12 @@
+# Model locations and private voices belong in the user's DSH settings.
+- insert:
+    - id: voice
+      name: '@nn12138/dsh-voice'
+      inject: [connection, webServer]
+      config:
+        engine: native
+        modelDir: ''
+        hotkey: 'ctrl+space'
+        ttsEngine: kokoro
+        ttsDevice: cuda
+        ttsAutoRead: true

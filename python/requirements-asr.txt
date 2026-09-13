@@ -1,0 +1,5 @@
+# Install PyTorch appropriate for your GPU separately before Qwen ASR.
+numpy
+soundfile
+faster-whisper==1.2.1
+qwen-asr==0.0.6

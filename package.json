@@ -1,0 +1,86 @@
+{
+  "name": "@nn12138/dsh-voice",
+  "version": "0.3.0",
+  "description": "Local voice input, read-aloud and named voice cloning for DSH Web",
+  "type": "module",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ],
+      "platform": "web"
+    }
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.1"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-settings-file": "0.1.5-rc.2",
+    "@deepseek-ai/dsh-api-session-controller": "0.1.5-rc.2",
+    "esbuild": "0.25.9",
+    "react": "^19.2.8"
+  },
+  "scripts": {
+    "build:client": "node tools/build-client.cjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:textnorm": "python3 python/test_textnorm.py",
+    "check:privacy": "node tools/check-privacy.mjs",
+    "prepack": "npm run build:client && npm run check:privacy"
+  },
+  "files": [
+    "lib/",
+    "python/*.py",
+    "python/requirements-asr.txt",
+    "tools/build-client.cjs",
+    "tools/check-privacy.mjs",
+    "tools/download-models.cjs",
+    "tools/lib.cjs",
+    "cordis.patch.yml",
+    "README.md",
+    "INSTALL.md",
+    "PRIVACY.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "voice",
+    "speech",
+    "asr",
+    "mic"
+  ],
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "bin": {
+    "dsh-voice-models": "tools/download-models.cjs"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenmzh/dsh-voice.git"
+  }
+}
